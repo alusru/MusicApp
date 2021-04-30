@@ -40,9 +40,6 @@ const Album = (props) => {
         singleArtist(props)
       }, [props])
 
-      
-      
-      
     return(
         <Layout>
             <Seo title="Album" />
