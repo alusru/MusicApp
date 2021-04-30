@@ -1,0 +1,10 @@
+[
+    {
+        "path": "/album",
+        "matchPath": "/album/:id"
+    },
+    {
+        "path": "/artist",
+        "matchPath": "/artist/:id"
+    }
+]
