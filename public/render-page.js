@@ -94,19 +94,17 @@ module.exports.default = module.exports, module.exports.__esModule = true;
 
 var _typeof = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js").default;
 
-function _getRequireWildcardCache() {
+function _getRequireWildcardCache(nodeInterop) {
   if (typeof WeakMap !== "function") return null;
-  var cache = new WeakMap();
-
-  _getRequireWildcardCache = function _getRequireWildcardCache() {
-    return cache;
-  };
-
-  return cache;
+  var cacheBabelInterop = new WeakMap();
+  var cacheNodeInterop = new WeakMap();
+  return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) {
+    return nodeInterop ? cacheNodeInterop : cacheBabelInterop;
+  })(nodeInterop);
 }
 
-function _interopRequireWildcard(obj) {
-  if (obj && obj.__esModule) {
+function _interopRequireWildcard(obj, nodeInterop) {
+  if (!nodeInterop && obj && obj.__esModule) {
     return obj;
   }
 
@@ -116,7 +114,7 @@ function _interopRequireWildcard(obj) {
     };
   }
 
-  var cache = _getRequireWildcardCache();
+  var cache = _getRequireWildcardCache(nodeInterop);
 
   if (cache && cache.has(obj)) {
     return cache.get(obj);
@@ -126,7 +124,7 @@ function _interopRequireWildcard(obj) {
   var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
 
   for (var key in obj) {
-    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+    if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) {
       var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
 
       if (desc && (desc.get || desc.set)) {
@@ -3123,13 +3121,13 @@ var _reachRouter = __webpack_require__(/*! @gatsbyjs/reach-router */ "./node_mod
 function useScrollRestoration(identifier) {
   var location = (0, _reachRouter.useLocation)();
   var state = (0, _react.useContext)(_scrollHandler.ScrollContext);
-  var ref = (0, _react.useRef)();
+  var ref = (0, _react.useRef)(null);
   (0, _react.useLayoutEffect)(function () {
     if (ref.current) {
       var position = state.read(location, identifier);
       ref.current.scrollTo(0, position || 0);
     }
-  }, []);
+  }, [location.key]);
   return {
     ref: ref,
     onScroll: function onScroll() {
@@ -3543,7 +3541,7 @@ let matchPaths = [];
 const trimPathname = rawPathname => {
   const pathname = decodeURIComponent(rawPathname); // Remove the pathPrefix from the pathname.
 
-  const trimmedPathname = (0,_strip_prefix__WEBPACK_IMPORTED_MODULE_1__.default)(pathname, "") // Remove any hashfragment
+  const trimmedPathname = (0,_strip_prefix__WEBPACK_IMPORTED_MODULE_1__.default)(pathname, decodeURIComponent("")) // Remove any hashfragment
   .split(`#`)[0] // Remove search query
   .split(`?`)[0];
   return trimmedPathname;
@@ -4557,7 +4555,7 @@ function onRenderBody(_ref) {
   var setHeadComponents = _ref.setHeadComponents;
   setHeadComponents([React.createElement("style", {
     key: "gatsby-image-style",
-    dangerouslySetInnerHTML: generateHtml(".gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper img{all:inherit;bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block}")
+    dangerouslySetInnerHTML: generateHtml(".gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block}")
   }), React.createElement("noscript", {
     key: "gatsby-image-style-noscript",
     dangerouslySetInnerHTML: generateHtml("<style>" + ".gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}" + "</style>")
