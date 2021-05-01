@@ -1,9 +1,5 @@
-
-export const API = `https://api.deezer.com/`
-
-
-/**
-use for localhost
-const cors_api_host = 'https://thingproxy.freeboard.io/fetch/'
-export const API = `${cors_api_host}https://api.deezer.com/`
-**/
+export const Config = {
+    api: `https://api.deezer.com/`,
+    cors_api_host: `https://cors-anywhere.herokuapp.com/`
+};
+export const BaseApi = `${Config.cors_api_host}${Config.api}`;
