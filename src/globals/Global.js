@@ -10,12 +10,12 @@ export const Container = styled.div`
     @media screen and (min-width: 1200px){
        width: 1170px;
     }
-    @media screen and (min-width: 992px){
-       width: 970px;
-    }
-    @media screen and (min-width: 768px){
-       width: 750px;
-    }
+//     @media screen and (min-width: 992px){
+//        width: 970px;
+//     }
+//     @media screen and (min-width: 768px){
+//        width: 750px;
+//     }
 `
 
 export const Row = styled.div`
