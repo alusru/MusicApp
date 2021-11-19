@@ -15,7 +15,7 @@ const Card = (props) => {
             <small>{albumdata.title}</small>
             <CardTitle>By {carddata.name}</CardTitle>
                 <Cardtext>
-                    <Button to={`/artist/${carddata.id}`}>View Artists</Button>
+                    <Button to={`/artist/${carddata.id}`}>View Artist</Button>
                 </Cardtext>
             </CardBody>
         </CardContainer>
