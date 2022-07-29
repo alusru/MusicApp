@@ -62,7 +62,7 @@ const Album = (props) => {
                            
                             <AlbumSmallTextDescription>
                                             <LiTrackList>{artist && artist.nb_tracks > 1 ? `${artist && artist.nb_tracks } tracks` : `${artist && artist.nb_tracks } track`} </LiTrackList>
-                                            <LiTrackList>{Math.floor((artist && artist.duration / 60) / 60)} hrs {Math.round(artist && artist.duration / 60) - (Math.floor((artist && artist.duration / 60) / 60) * 60)} mins</LiTrackList>
+                                            <LiTrackList>{Math.floor((artist && artist.duration / 60) / 60)} h {Math.round(artist && artist.duration / 60) - (Math.floor((artist && artist.duration / 60) / 60) * 60)} mins</LiTrackList>
                                             <LiTrackList>{artist && artist.release_date}</LiTrackList>
                                             <LiTrackList>{artist && artist.fans} fans</LiTrackList>
                             </AlbumSmallTextDescription>
