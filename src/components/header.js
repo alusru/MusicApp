@@ -28,6 +28,12 @@ const Header = ({ siteTitle }) => (
           {siteTitle}
         </Link>
       </h1>
+      <span>
+        <Link to="https://cors-anywhere.herokuapp.com/corsdemo" style={{
+            color: `white`,
+            textDecoration: `none`,
+          }} >{"CORS Anywhere"}</Link>
+      </span>
     </div>
   </header>
 )
