@@ -1,6 +1,7 @@
 import * as React from "react"
 import PropTypes from "prop-types"
 import { Link } from "gatsby"
+import {Button} from '../globals/Global'
 
 const Header = ({ siteTitle }) => (
   <header
@@ -28,11 +29,8 @@ const Header = ({ siteTitle }) => (
           {siteTitle}
         </Link>
       </h1>
-      <span>
-        <Link to="https://cors-anywhere.herokuapp.com/corsdemo" style={{
-            color: `white`,
-            textDecoration: `none`,
-          }} >{"CORS Anywhere"}</Link>
+      <span style={{display:flex,justifyContent: flex-end}}>
+        <Button to="https://cors-anywhere.herokuapp.com/corsdemo">{"CORS Anywhere"}</Button>
       </span>
     </div>
   </header>
