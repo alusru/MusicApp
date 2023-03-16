@@ -29,7 +29,7 @@ const Header = ({ siteTitle }) => (
           {siteTitle}
         </Link>
       </h1>
-      <span style={{display:flex,justifyContent: flex-end}}>
+      <span>
         <Button to="https://cors-anywhere.herokuapp.com/corsdemo">{"CORS Anywhere"}</Button>
       </span>
     </div>
