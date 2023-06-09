@@ -57,7 +57,7 @@ const Album = (props) => {
                     </Column>
                     <Column>
                         <AlbumContainer>
-                            <AlbumTitle>{artist &&  artist.title}{String(rd) == artist && artist.release_date ? <BadgeNewAlbum>NEW</BadgeNewAlbum> : " "} </AlbumTitle>
+                            <AlbumTitle>{artist &&  artist.title}.{String(rd) == artist.release_date ? <BadgeNewAlbum>NEW</BadgeNewAlbum> : " "} </AlbumTitle>
                             {
                                 artist &&  artist.contributors.map(contributor => 
                                     <AlbumSides key={contributor.id}>
