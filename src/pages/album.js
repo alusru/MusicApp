@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from "axios"
 import {API} from '../components/API'
 import {Container, Row, Column,AlbumTitle,AlbumContainer,AlbumSides,ArtistNameInAlbum,ArtistImageInAlbum,
-    AlbumSmallTextDescription,LiTrackList,DataTable} from '../globals/Global'
+    AlbumSmallTextDescription,LiTrackList,DataTable,BadgeNewAlbum} from '../globals/Global'
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
@@ -18,6 +18,13 @@ const Album = (props) => {
     
 
     const [artist,setArtist] = useState('')
+
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    let rd = yyyy + '-' + mm + '-' + dd;
     
     const singleArtist = async(props) => {
         let finalResults = []
@@ -50,7 +57,7 @@ const Album = (props) => {
                     </Column>
                     <Column>
                         <AlbumContainer>
-                            <AlbumTitle>{artist &&  artist.title}</AlbumTitle>
+                            <AlbumTitle>{artist &&  artist.title}{rd == artist && artist.release_date ? <BadgeNewAlbum>NEW</BadgeNewAlbum> : " "} </AlbumTitle>
                             {
                                 artist &&  artist.contributors.map(contributor => 
                                     <AlbumSides key={contributor.id}>
