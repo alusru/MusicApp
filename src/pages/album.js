@@ -4,6 +4,7 @@ import {API} from '../components/API'
 import {Container, Row, Column,AlbumTitle,AlbumContainer,AlbumSides,ArtistNameInAlbum,ArtistImageInAlbum,
     AlbumSmallTextDescription,LiTrackList,DataTable} from '../globals/Global'
 import Layout from "../components/layout"
+import Flag from "../components/Flag"
 import Seo from "../components/seo"
 
 import {FaShareSquare} from 'react-icons/fa'
@@ -57,7 +58,7 @@ const Album = (props) => {
                     </Column>
                     <Column>
                         <AlbumContainer>
-                            <AlbumTitle>{artist &&  artist.title} {String(rd) == artist && artist.release_date ? <BadgeNewAlbum>NEW</BadgeNewAlbum> : " "} </AlbumTitle>
+                            <AlbumTitle>{artist &&  artist.title} {String(rd) == artist && artist.release_date ? <Flag /> : " "} </AlbumTitle>
                             {
                                 artist &&  artist.contributors.map(contributor => 
                                     <AlbumSides key={contributor.id}>
