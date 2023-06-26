@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from "axios"
 import {API} from '../components/API'
 import {Container, Row, Column,AlbumTitle,AlbumContainer,AlbumSides,ArtistNameInAlbum,ArtistImageInAlbum,
-    AlbumSmallTextDescription,LiTrackList,DataTable,BadgeNewAlbum} from '../globals/Global'
+    AlbumSmallTextDescription,LiTrackList,DataTable} from '../globals/Global'
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
