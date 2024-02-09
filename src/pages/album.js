@@ -4,6 +4,7 @@ import {API} from '../components/API'
 import {Container, Row, Column,AlbumTitle,AlbumContainer,AlbumSides,ArtistNameInAlbum,ArtistImageInAlbum,
     AlbumSmallTextDescription,LiTrackList,DataTable} from '../globals/Global'
 import Layout from "../components/layout"
+import Flag from "../components/Flag"
 import Seo from "../components/seo"
 
 import {FaShareSquare} from 'react-icons/fa'
@@ -18,6 +19,13 @@ const Album = (props) => {
     
 
     const [artist,setArtist] = useState('')
+
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    let rd = yyyy + '-' + mm + '-' + dd;
     
     const singleArtist = async(props) => {
         let finalResults = []
@@ -50,7 +58,7 @@ const Album = (props) => {
                     </Column>
                     <Column>
                         <AlbumContainer>
-                            <AlbumTitle>{artist &&  artist.title}</AlbumTitle>
+                            <AlbumTitle>{artist &&  artist.title} {String(rd) == artist && artist.release_date ? <Flag /> : " "} </AlbumTitle>
                             {
                                 artist &&  artist.contributors.map(contributor => 
                                     <AlbumSides key={contributor.id}>
@@ -62,7 +70,7 @@ const Album = (props) => {
                            
                             <AlbumSmallTextDescription>
                                             <LiTrackList>{artist && artist.nb_tracks > 1 ? `${artist && artist.nb_tracks } tracks` : `${artist && artist.nb_tracks } track`} </LiTrackList>
-                                            <LiTrackList>{Math.floor((artist && artist.duration / 60) / 60)} hrs {Math.round(artist && artist.duration / 60) - (Math.floor((artist && artist.duration / 60) / 60) * 60)} mins</LiTrackList>
+                                            <LiTrackList>{Math.floor((artist && artist.duration / 60) / 60)} h {Math.round(artist && artist.duration / 60) - (Math.floor((artist && artist.duration / 60) / 60) * 60)} mins</LiTrackList>
                                             <LiTrackList>{artist && artist.release_date}</LiTrackList>
                                             <LiTrackList>{artist && artist.fans} fans</LiTrackList>
                             </AlbumSmallTextDescription>
