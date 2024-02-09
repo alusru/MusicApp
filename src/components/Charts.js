@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import axios from "axios"
 import {API} from '../components/API'
 import {AlbumCover,TrackList,DataTable,AlbumTableData} from '../globals/Global'
+import ReactAudioPlayer from 'react-audio-player';
+
 const Charts = (props) => {
     const {top} = props
     
@@ -28,8 +30,7 @@ const Charts = (props) => {
         singleArtist(top)
       }, [top])
 
-      
-
+    
     return(
         <TrackList>
             <DataTable>
@@ -46,7 +47,7 @@ const Charts = (props) => {
                     <tr key={tracks.id}>
                         <AlbumTableData><AlbumCover src={tracks.album.cover_big} alt={tracks.album.title} /></AlbumTableData>
                         <AlbumTableData>{tracks.title} </AlbumTableData>
-                        <AlbumTableData><a href={tracks.link}>Preview</a></AlbumTableData>
+                        <AlbumTableData><ReactAudioPlayer src={tracks.preview} controls style={{width:"190px", height:"30px"}} /></AlbumTableData>
                     </tr>
                     )
                 }
