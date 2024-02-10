@@ -67,7 +67,7 @@ const Album = (props) => {
                 {days && days <= 7 ? <BadgeNewAlbum>NEW</BadgeNewAlbum> : ""}
               </AlbumTitle>
               {artist &&
-                artist.contributors.map((contributor) => (
+                artist.contributors?.map((contributor) => (
                   <AlbumSides key={contributor.id}>
                     <ArtistImageInAlbum
                       src={contributor.picture_small}
@@ -140,5 +140,4 @@ const Album = (props) => {
     </Layout>
   );
 };
-
 export default Album;

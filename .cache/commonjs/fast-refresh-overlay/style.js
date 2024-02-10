@@ -1,14 +1,11 @@
 "use strict";
 
-var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
-
 exports.__esModule = true;
 exports.Style = void 0;
-
 var React = _interopRequireWildcard(require("react"));
-
 var _cssToObject = require("../css-to-object");
-
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 const Style = () => /*#__PURE__*/React.createElement("style", {
   dangerouslySetInnerHTML: {
     __html: (0, _cssToObject.css)`
@@ -58,7 +55,7 @@ const Style = () => /*#__PURE__*/React.createElement("style", {
 
         [data-gatsby-overlay="backdrop"] {
           background: var(--backdrop);
-          position: absolute;
+          position: fixed;
           top: 0;
           left: 0;
           right: 0;
@@ -190,7 +187,7 @@ const Style = () => /*#__PURE__*/React.createElement("style", {
           font-weight: 500;
         }
 
-        [data-gatsby-overlay="header__open-in-editor"] {
+        [data-gatsby-overlay="primary-button"] {
           --ring-opacity: 0.9;
           --ring-color: rgba(54, 32, 102, var(--ring-opacity));
           align-items: center;
@@ -241,7 +238,7 @@ const Style = () => /*#__PURE__*/React.createElement("style", {
           margin-bottom: 0.5em;
         }
 
-        [data-gatsby-overlay="header__close-button"] {
+        [data-gatsby-overlay="close-button"] {
           --ring-opacity: 0.9;
           --ring-color: rgba(54, 32, 102, var(--ring-opacity));
           cursor: pointer;
@@ -409,13 +406,13 @@ const Style = () => /*#__PURE__*/React.createElement("style", {
             --ring-color: rgba(217, 186, 232, var(--ring-opacity));
           }
 
-          [data-gatsby-overlay="header__close-button"],
-          [data-gatsby-overlay="header__open-in-editor"] {
+          [data-gatsby-overlay="close-button"],
+          [data-gatsby-overlay="primary-button"] {
             --ring-color: rgba(177, 122, 204, var(--ring-opacity));
           }
         }
       `
   }
 });
-
 exports.Style = Style;
+//# sourceMappingURL=style.js.map

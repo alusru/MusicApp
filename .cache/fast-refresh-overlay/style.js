@@ -51,7 +51,7 @@ export const Style = () => (
 
         [data-gatsby-overlay="backdrop"] {
           background: var(--backdrop);
-          position: absolute;
+          position: fixed;
           top: 0;
           left: 0;
           right: 0;
@@ -183,7 +183,7 @@ export const Style = () => (
           font-weight: 500;
         }
 
-        [data-gatsby-overlay="header__open-in-editor"] {
+        [data-gatsby-overlay="primary-button"] {
           --ring-opacity: 0.9;
           --ring-color: rgba(54, 32, 102, var(--ring-opacity));
           align-items: center;
@@ -234,7 +234,7 @@ export const Style = () => (
           margin-bottom: 0.5em;
         }
 
-        [data-gatsby-overlay="header__close-button"] {
+        [data-gatsby-overlay="close-button"] {
           --ring-opacity: 0.9;
           --ring-color: rgba(54, 32, 102, var(--ring-opacity));
           cursor: pointer;
@@ -402,8 +402,8 @@ export const Style = () => (
             --ring-color: rgba(217, 186, 232, var(--ring-opacity));
           }
 
-          [data-gatsby-overlay="header__close-button"],
-          [data-gatsby-overlay="header__open-in-editor"] {
+          [data-gatsby-overlay="close-button"],
+          [data-gatsby-overlay="primary-button"] {
             --ring-color: rgba(177, 122, 204, var(--ring-opacity));
           }
         }

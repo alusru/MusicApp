@@ -19,7 +19,8 @@ class Dev404Page extends React.Component {
     const initialPagePathSearchTerms = urlState.filter ? urlState.filter : ``
 
     this.state = {
-      showCustom404: false,
+      hasMounted: false,
+      showCustom404: process.env.GATSBY_DISABLE_CUSTOM_404 || false,
       initPagePaths: pagePaths,
       pagePathSearchTerms: initialPagePathSearchTerms,
       pagePaths: this.getFilteredPagePaths(
@@ -30,6 +31,12 @@ class Dev404Page extends React.Component {
     this.showCustom404 = this.showCustom404.bind(this)
     this.handlePagePathSearch = this.handlePagePathSearch.bind(this)
     this.handleSearchTermChange = this.handleSearchTermChange.bind(this)
+  }
+
+  componentDidMount() {
+    this.setState({
+      hasMounted: true,
+    })
   }
 
   showCustom404() {
@@ -78,19 +85,16 @@ class Dev404Page extends React.Component {
   }
 
   render() {
-    // Detect when the query returns the default function node that's added when functions
-    // are *not* enabled. That seems the simplest way to communicate whether
-    // functions are enabled or not to this page.
-    // TODO remove when functions are shipped.
-    const functionsEnabled = !(
-      this.props.data.allSiteFunction.nodes[0]?.apiRoute === `FAKE`
-    )
+    if (!this.state.hasMounted) {
+      return null
+    }
+
     const { pathname } = this.props.location
     let newFilePath
     let newAPIPath
     if (pathname === `/`) {
       newFilePath = `src/pages/index.js`
-    } else if (functionsEnabled && pathname.slice(0, 4) === `/api`) {
+    } else if (pathname.slice(0, 4) === `/api`) {
       newAPIPath = `src${pathname}.js`
     } else if (pathname.slice(-1) === `/`) {
       newFilePath = `src/pages${pathname.slice(0, -1)}.js`
@@ -104,9 +108,7 @@ class Dev404Page extends React.Component {
       <div>
         <h1>Gatsby.js development 404 page</h1>
         <p>
-          {`There's not a page ${
-            functionsEnabled ? `or function ` : ``
-          }yet at `}
+          There's not a page or function yet at{` `}
           <code>{pathname}</code>
         </p>
         {this.props.custom404 ? (
@@ -128,13 +130,20 @@ class Dev404Page extends React.Component {
               Create a React.js component like the following in your site
               directory at
               {` `}"<code>{newFilePath}</code>"{` `}
-              and this page will automatically refresh to show the new page
-              component you created.
+              and then refresh to show the new page component you created.
             </p>
-            <pre>
+            <pre
+              style={{
+                border: `1px solid lightgray`,
+                padding: `8px`,
+                maxWidth: `80ch`,
+                background: `#f3f3f3`,
+              }}
+            >
               <code
                 dangerouslySetInnerHTML={{
-                  __html: `
+                  __html: `import * as React from "react"
+
 export default function Component () {
   return "Hello world"
 }`,
@@ -152,7 +161,14 @@ export default function Component () {
               {` `}"<code>{newAPIPath}</code>"{` `}
               and refresh to execute the new API function you created.
             </p>
-            <pre>
+            <pre
+              style={{
+                border: `1px solid lightgray`,
+                padding: `8px`,
+                maxWidth: `80ch`,
+                background: `#f3f3f3`,
+              }}
+            >
               <code
                 dangerouslySetInnerHTML={{
                   __html: `
@@ -168,27 +184,20 @@ export default function API (req, res) {
           <div>
             <hr />
             <p>
-              If you were trying to reach another page
-              {functionsEnabled ? ` or function` : ``}, perhaps you can find it
-              below.
+              If you were trying to reach another page or function, perhaps you
+              can find it below.
             </p>
-            {functionsEnabled && (
-              <>
-                <h2>
-                  Functions ({this.props.data.allSiteFunction.nodes.length})
-                </h2>
-                <ul>
-                  {this.props.data.allSiteFunction.nodes.map(node => {
-                    const apiRoute = `/api/${node.apiRoute}`
-                    return (
-                      <li key={apiRoute}>
-                        <a href={apiRoute}>{apiRoute}</a>
-                      </li>
-                    )
-                  })}
-                </ul>
-              </>
-            )}
+            <h2>Functions ({this.props.data.allSiteFunction.nodes.length})</h2>
+            <ul>
+              {this.props.data.allSiteFunction.nodes.map(node => {
+                const functionRoute = `/api/${node.functionRoute}`
+                return (
+                  <li key={functionRoute}>
+                    <a href={functionRoute}>{functionRoute}</a>
+                  </li>
+                )
+              })}
+            </ul>
             <h2>
               Pages (
               {this.state.pagePaths.length != this.state.initPagePaths.length
@@ -234,17 +243,20 @@ export default function API (req, res) {
 
 export default Dev404Page
 
+// ESLint is complaining about the backslash in regex
+/* eslint-disable */
 export const pagesQuery = graphql`
   query PagesQuery {
     allSiteFunction {
       nodes {
-        apiRoute
+        functionRoute
       }
     }
-    allSitePage(filter: { path: { ne: "/dev-404-page/" } }) {
+    allSitePage(filter: { path: { regex: "/^(?!\/dev-404-page).+$/" } }) {
       nodes {
         path
       }
     }
   }
 `
+/* eslint-enable */
