@@ -133,6 +133,7 @@ export const AlbumSmallTextDescription = styled.ul`
     font-size: 14px;
 `
 
+
 export const AlbumSides = styled.div`
     display: inline-flex;
     vertical-align: top;
