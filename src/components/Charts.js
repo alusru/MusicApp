@@ -8,7 +8,6 @@ import {
   AlbumTableData,
 } from "../globals/Global";
 import ReactAudioPlayer from "react-audio-player";
-import { Link } from "gatsby";
 
 const Charts = (props) => {
   const { top } = props;
@@ -50,12 +49,10 @@ const Charts = (props) => {
             toptracks.map((tracks) => (
               <tr key={tracks.id}>
                 <AlbumTableData>
-                  
-                    <AlbumCover
-                      src={tracks.album.cover_big}
-                      alt={tracks.album.title}
-                    />
-                  
+                  <AlbumCover
+                    src={tracks.album.cover_big}
+                    alt={tracks.album.title}
+                  />
                 </AlbumTableData>
                 <AlbumTableData>{tracks.title} </AlbumTableData>
                 <AlbumTableData>

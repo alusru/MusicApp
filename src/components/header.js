@@ -1,7 +1,6 @@
-import * as React from "react"
-import PropTypes from "prop-types"
-import { Link } from "gatsby"
-import {Button} from '../globals/Global'
+import * as React from "react";
+import PropTypes from "prop-types";
+import { Link } from "gatsby";
 
 const Header = ({ siteTitle }) => (
   <header
@@ -17,7 +16,6 @@ const Header = ({ siteTitle }) => (
         padding: `1.45rem 1.0875rem`,
       }}
     >
-      
       <h1 style={{ margin: 0 }}>
         <Link
           to="/"
@@ -30,18 +28,20 @@ const Header = ({ siteTitle }) => (
         </Link>
       </h1>
       <span>
-        <Button to="https://cors-anywhere.herokuapp.com/corsdemo">{"CORS Anywhere"}</Button>
+        <a href="https://cors-anywhere.herokuapp.com/corsdemo">
+          {"CORS Anywhere"}
+        </a>
       </span>
     </div>
   </header>
-)
+);
 
 Header.propTypes = {
   siteTitle: PropTypes.string,
-}
+};
 
 Header.defaultProps = {
   siteTitle: ``,
-}
+};
 
-export default Header
+export default Header;

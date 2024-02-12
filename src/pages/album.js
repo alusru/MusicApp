@@ -17,7 +17,7 @@ import {
 } from "../globals/Global";
 import Layout from "../components/layout";
 import Seo from "../components/seo";
-const dayjs = require('dayjs');
+import dayjs from "dayjs";
 import ReactAudioPlayer from "react-audio-player";
 
 const Album = (props) => {
@@ -43,11 +43,13 @@ const Album = (props) => {
     singleArtist(props);
   }, [props]);
 
-  const today = dayjs().locale('en');
+  const today = dayjs().locale("en");
 
   const release_date = artist.release_date;
 
   let days = today?.diff(release_date, "days");
+
+  console.log(days);
 
   // diff between release date and todays date
   // if diff is greater or equal to 7 than display new
