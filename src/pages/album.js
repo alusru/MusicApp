@@ -47,7 +47,7 @@ const Album = (props) => {
 
   const release_date = artist.release_date;
 
-  let days = today.diff(release_date, "days");
+  let days = today?.diff(release_date, "days");
 
   // diff between release date and todays date
   // if diff is greater or equal to 7 than display new
