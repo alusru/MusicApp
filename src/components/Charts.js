@@ -50,12 +50,12 @@ const Charts = (props) => {
             toptracks.map((tracks) => (
               <tr key={tracks.id}>
                 <AlbumTableData>
-                  <Link to={`/album/${tracks.album.id}`}>
+                  
                     <AlbumCover
                       src={tracks.album.cover_big}
                       alt={tracks.album.title}
                     />
-                  </Link>
+                  
                 </AlbumTableData>
                 <AlbumTableData>{tracks.title} </AlbumTableData>
                 <AlbumTableData>
