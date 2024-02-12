@@ -43,7 +43,7 @@ const Album = (props) => {
     singleArtist(props);
   }, [props]);
 
-  const today = dayjs();
+  const today = dayjs.locale('en');
 
   const release_date = artist.release_date;
 
