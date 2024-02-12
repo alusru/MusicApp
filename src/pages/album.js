@@ -17,7 +17,7 @@ import {
 } from "../globals/Global";
 import Layout from "../components/layout";
 import Seo from "../components/seo";
-import dayjs from "dayjs";
+const dayjs = require('dayjs');
 import ReactAudioPlayer from "react-audio-player";
 
 const Album = (props) => {
@@ -43,11 +43,11 @@ const Album = (props) => {
     singleArtist(props);
   }, [props]);
 
-  // const today = dayjs().locale('en');
+  const today = dayjs().locale('en');
 
-  // const release_date = artist.release_date;
+  const release_date = artist.release_date;
 
-  // let days = today?.diff(release_date, "days");
+  let days = today?.diff(release_date, "days");
 
   // diff between release date and todays date
   // if diff is greater or equal to 7 than display new
@@ -64,7 +64,7 @@ const Album = (props) => {
             <AlbumContainer>
               <AlbumTitle>
                 {artist && artist.title}{" "}
-                {/* {days && days <= 7 ? <BadgeNewAlbum>NEW</BadgeNewAlbum> : ""} */}
+                {days && days <= 7 ? <BadgeNewAlbum>NEW</BadgeNewAlbum> : ""}
               </AlbumTitle>
               {artist &&
                 artist.contributors?.map((contributor) => (
